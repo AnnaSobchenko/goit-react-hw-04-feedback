@@ -1,0 +1,93 @@
+.App {
+  text-align: center;
+}
+.AppHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-shadow: 4px 4px 2px rgba(255, 255, 255, 0.12),
+    1px 2px 3px rgba(255, 255, 255, 0.08), 3px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.button {
+  width: 100px;
+  height: 45px;
+  background-color: white;
+  color: #282c34;
+  font-size: calc(4px + 2vmin);
+  font-weight: 700;
+  border-radius: 5px;
+  margin-right: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.12),
+    0px 1px 2px 0px rgba(255, 255, 255, 0.08),
+    0px 3px 1px 0px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.Statistics {
+  padding: 30px;
+  font-size: calc(30px + 2vmin);
+  color: white;
+  text-shadow: 4px 4px 2px rgba(255, 255, 255, 0.12),
+    1px 2px 3px rgba(255, 255, 255, 0.08), 3px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  color: #282c34;
+  justify-content: center;
+}
+
+.item {
+  padding: 10px;
+  width: 200px;
+  height: 80px;
+  display: flex;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.12),
+    0px 1px 2px 0px rgba(255, 255, 255, 0.08),
+    0px 3px 1px 0px rgba(255, 255, 255, 0.1);
+}
+
+.label {
+  font-size: 20px;
+  font-weight: 500;
+  color: #282c34;
+}
+
+.percentage {
+  color: #282c34;
+  font-size: 40px;
+  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2), 1px 2px 3px rgba(0, 0, 0, 0.08),
+    3px 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.total {
+  margin-top: 30px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 30px;
+  text-shadow: 4px 4px 2px rgba(255, 255, 255, 0.12),
+    1px 2px 3px rgba(255, 255, 255, 0.08), 3px 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.12),
+    0px 1px 2px 0px rgba(255, 255, 255, 0.08),
+    0px 3px 1px 0px rgba(255, 255, 255, 0.1);
+}
+
+.totalResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
