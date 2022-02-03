@@ -1,43 +1,63 @@
+import { Component } from "react";
 import "./App.scss";
+import FeedbackOptions from "./Components/FeedbackOptions/FeedbackOptions";
+import Statistics from "./Components/Statistics/Statistics";
+class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="AppHeader">
-        <h1>Please leave feedback</h1>
-      </header>
-      <main className="main">
-        <button className="button" type="button">
-          Good
-        </button>
-        <button className="button" type="button">
-          Neutral
-        </button>
-        <button className="button" type="button">
-          Bad
-        </button>
-        <h2 className="Statistics">Statistics</h2>
-        <ul className="list">
-          <li className="item">
-            <span className="label">Good</span>
-            <span className="percentage">0</span>
-          </li>
-          <li className="item">
-            <span className="label">Neutral</span>
-            <span className="percentage">0</span>
-          </li>
-          <li className="item">
-            <span className="label">Bad</span>
-            <span className="percentage">0</span>
-          </li>
-        </ul>
-        <div className="totalResult">
-          <span className="total">Total 0</span>
-          <span className="total">Positive feedback 0</span>
-        </div>
-      </main>
-    </div>
-  );
+  countGoodFeedback = () => {
+    this.setState((prevState) => ({ good: prevState.good + 1 }));
+  };
+  countNeutralFeedback = () => {
+    this.setState((prevState) => ({ neutral: prevState.neutral + 1 }));
+  };
+  countBadFeedback = () => {
+    this.setState((prevState) => ({ bad: prevState.bad + 1 }));
+  };
+
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+  countPositiveFeedbackPercentage = () => {
+    return Math.round(
+      (this.state.good * 100) /
+        (this.state.good + this.state.neutral + this.state.bad)
+    );
+  };
+
+  render() {
+    const { good, neutral, bad } = this.state;
+    return (
+      <div className="App">
+        <header className="AppHeader">
+          <h1>Please leave feedback</h1>
+        </header>
+        <main className="main">
+          <FeedbackOptions
+            countGoodFeedback={this.countGoodFeedback}
+            countNeutralFeedback={this.countNeutralFeedback}
+            countBadFeedback={this.countBadFeedback}
+          />
+
+          {(this.countTotalFeedback() && (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              countTotalFeedback={this.countTotalFeedback}
+              countPositiveFeedbackPercentage={
+                this.countPositiveFeedbackPercentage
+              }
+            />
+          )) || <h2 className="Statistics">There is no feedback</h2>}
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
