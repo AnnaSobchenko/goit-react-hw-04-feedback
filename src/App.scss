@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.Statistics {
+.Section, h2 {
   padding: 15px;
   font-size: calc(30px + 2vmin);
   color: white;
@@ -75,7 +75,7 @@
   display: flex;
   justify-content: center;
   width: 500px;
-  height: 50px;
+  height: 40px;
   border-radius: 5px;
   background-color: white;
   font-size: 30px;

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.scss";
 import FeedbackOptions from "./Components/FeedbackOptions/FeedbackOptions";
+import Section from "./Components/shared/section";
 import Statistics from "./Components/Statistics/Statistics";
 class App extends Component {
   state = {
@@ -34,25 +35,27 @@ class App extends Component {
     return (
       <div className="App">
         <header className="AppHeader">
-          <h1>Please leave feedback</h1>
+          <Section title={"Please leave feedback"}>
+            <FeedbackOptions
+              countGoodFeedback={this.countGoodFeedback}
+              countNeutralFeedback={this.countNeutralFeedback}
+              countBadFeedback={this.countBadFeedback}
+            />
+          </Section>
         </header>
         <main className="main">
-          <FeedbackOptions
-            countGoodFeedback={this.countGoodFeedback}
-            countNeutralFeedback={this.countNeutralFeedback}
-            countBadFeedback={this.countBadFeedback}
-          />
-
           {(this.countTotalFeedback() && (
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              countTotalFeedback={this.countTotalFeedback}
-              countPositiveFeedbackPercentage={
-                this.countPositiveFeedbackPercentage
-              }
-            />
+            <Section title={"Statistics"}>
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                countTotalFeedback={this.countTotalFeedback}
+                countPositiveFeedbackPercentage={
+                  this.countPositiveFeedbackPercentage
+                }
+              />
+            </Section>
           )) || <h2 className="Statistics">There is no feedback</h2>}
         </main>
       </div>

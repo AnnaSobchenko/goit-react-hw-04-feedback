@@ -6,7 +6,6 @@ const Statistics = ({
   countPositiveFeedbackPercentage,
 }) => (
   <>
-    <h2 className="Statistics">Statistics</h2>
     <ul className="list">
       <li className="item">
         <span className="label">Good</span>
