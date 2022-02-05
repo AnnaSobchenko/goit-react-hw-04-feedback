@@ -1,8 +1,10 @@
 import { Component } from "react";
 import "./App.scss";
 import FeedbackOptions from "./Components/FeedbackOptions/FeedbackOptions";
-import Section from "./Components/shared/section";
+import Section from "./Components/shared/Section";
 import Statistics from "./Components/Statistics/Statistics";
+import PropTypes from "prop-types";
+
 class App extends Component {
   state = {
     good: 0,
@@ -62,5 +64,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+};
 
 export default App;
