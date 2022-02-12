@@ -1,63 +1,69 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import FeedbackOptions from "./Components/FeedbackOptions/FeedbackOptions";
 import Section from "./Components/shared/Section";
 import Statistics from "./Components/Statistics/Statistics";
 import PropTypes from "prop-types";
 
-class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-  countFeedback = (e) => {
+  const handleCountFeedback = (e) => {
     const { name } = e.target;
-    this.setState((prevState) => ({ [name]: prevState[name] + 1 }));
+    console.log(name);
+    switch (name) {
+      case "good":
+        setGood((prev) => prev + 1);
+        break;
+
+      case "neutral":
+        setNeutral((prev) => prev + 1);
+        break;
+
+      case "bad":
+        setBad((prev) => prev + 1);
+        break;
+      default:
+        return;
+    }
   };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-  countPositiveFeedbackPercentage = () => {
-    return Math.round(
-      (this.state.good * 100) /
-        (this.state.good + this.state.neutral + this.state.bad)
-    );
+  const countTotalFeedback = () => {
+    return Number(good + neutral + bad);
   };
 
-  render() {
-    const { good, neutral, bad } = this.state;
-    return (
-      <div className="App">
-        <header className="AppHeader">
-          <Section title={"Please leave feedback"}>
-            <FeedbackOptions
-              optionsState={Object.keys(this.state)}
-              countFeedback={this.countFeedback}
+  const countPositiveFeedbackPercentage = () => {
+    return Math.round((good * 100) / (good + neutral + bad)) || 0;
+  };
+
+  return (
+    <div className="App">
+      <header className="AppHeader">
+        <Section title={"Please leave feedback"}>
+          <FeedbackOptions
+            optionsState={Object.keys({ good, neutral, bad })}
+            countFeedback={handleCountFeedback}
+          />
+        </Section>
+      </header>
+      <main className="main">
+        {(countTotalFeedback() && (
+          <Section title={"Statistics"}>
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              countTotalFeedback={countTotalFeedback}
+              countPositiveFeedbackPercentage={countPositiveFeedbackPercentage}
             />
           </Section>
-        </header>
-        <main className="main">
-          {(this.countTotalFeedback() && (
-            <Section title={"Statistics"}>
-              <Statistics
-                good={good}
-                neutral={neutral}
-                bad={bad}
-                countTotalFeedback={this.countTotalFeedback}
-                countPositiveFeedbackPercentage={
-                  this.countPositiveFeedbackPercentage
-                }
-              />
-            </Section>
-          )) || <h2 className="Statistics">There is no feedback</h2>}
-        </main>
-      </div>
-    );
-  }
-}
+        )) || <h2 className="Statistics">There is no feedback</h2>}
+      </main>
+    </div>
+  );
+};
 
 App.propTypes = {
   good: PropTypes.number,
